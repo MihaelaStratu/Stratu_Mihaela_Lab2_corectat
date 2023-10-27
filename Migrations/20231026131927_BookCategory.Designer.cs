@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Stratu_Mihaela_Lab2.Data;
 
@@ -11,9 +12,10 @@ using Stratu_Mihaela_Lab2.Data;
 namespace Stratu_Mihaela_Lab2.Migrations
 {
     [DbContext(typeof(Stratu_Mihaela_Lab2Context))]
-    partial class Stratu_Mihaela_Lab2ContextModelSnapshot : ModelSnapshot
+    [Migration("20231026131927_BookCategory")]
+    partial class BookCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
