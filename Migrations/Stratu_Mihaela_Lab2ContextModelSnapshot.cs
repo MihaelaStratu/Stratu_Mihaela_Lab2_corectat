@@ -136,7 +136,7 @@ namespace Stratu_Mihaela_Lab2.Migrations
             modelBuilder.Entity("Stratu_Mihaela_Lab2.Models.Book", b =>
                 {
                     b.HasOne("Stratu_Mihaela_Lab2.Models.Author", "Authors")
-                        .WithMany()
+                        .WithMany("Books")
                         .HasForeignKey("AuthorsID");
 
                     b.HasOne("Stratu_Mihaela_Lab2.Models.Publisher", "Publisher")
@@ -165,6 +165,11 @@ namespace Stratu_Mihaela_Lab2.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Stratu_Mihaela_Lab2.Models.Author", b =>
+                {
+                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("Stratu_Mihaela_Lab2.Models.Book", b =>

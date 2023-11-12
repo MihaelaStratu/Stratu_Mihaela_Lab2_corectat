@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Stratu_Mihaela_Lab2.Data;
 using Stratu_Mihaela_Lab2.Models;
+using Stratu_Mihaela_Lab2.Models.ViewModels;
 
 namespace Stratu_Mihaela_Lab2.Pages.Categories
 {
@@ -19,13 +20,19 @@ namespace Stratu_Mihaela_Lab2.Pages.Categories
             _context = context;
         }
 
-        public IList<Category> Category { get;set; } = default!;
+        public IList<Category> Category { get; set; } = default!;
 
-        public async Task OnGetAsync()
+        public CategoriesData CategoryData { get; set; }
+        public int CategoryID { get; set; }
+        public int BookID { get; set; }
+        public async Task OnGetAsync(int? id, int? bookID)
         {
-            if (_context.Category != null)
+            CategoryData = new CategoriesData(); CategoryData.Publishers = await _context.Category.Include(i => i.BookCategories).ThenInclude(c => c.Book.Authors).OrderBy(i => i.CategoryName).ToListAsync();
+            if (id != null)
             {
-                Category = await _context.Category.ToListAsync();
+                CategoryID = id.Value;
+                Category category = CategoryData.Publishers.Where(i => i.ID == id.Value).Single();
+                CategoryData.Books = category.BookCategories.Select(bc => bc.Book).ToList();
             }
         }
     }

@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Stratu_Mihaela_Lab2.Data;
-using Stratu_Mihaela_Lab2.Migrations;
 using Stratu_Mihaela_Lab2.Models;
 
 namespace Stratu_Mihaela_Lab2.Pages.Books
