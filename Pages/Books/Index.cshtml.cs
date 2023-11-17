@@ -26,8 +26,7 @@ namespace Stratu_Mihaela_Lab2.Pages.Books
         public string TitleSort { get; set; }
         public string AuthorSort { get; set; }
         public string CurrentFilter { get; set; }
-        public async Task OnGetAsync(int? id, int? categoryID, string sortOrder, string
-searchString)
+        public async Task OnGetAsync(int? id, int? categoryID, string sortOrder, string searchString)
         {
             BookD = new BookData();
 
@@ -41,6 +40,8 @@ searchString)
             .AsNoTracking()
             .OrderBy(b => b.Title)
             .ToListAsync();
+
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 BookD.Books = BookD.Books.Where(s => s.Authors.FirstName.Contains(searchString)
@@ -66,7 +67,7 @@ searchString)
                    s.Authors.FullName);
                     break;
                 case "author":
-                    BookD.Books = BookD.Books.OrderBy(s =>s.Authors.FullName);
+                    BookD.Books = BookD.Books.OrderBy(s =>s.Authors);
                     break;
                 default:
                     BookD.Books = BookD.Books.OrderBy(s => s.Title);
